@@ -6,7 +6,7 @@ import knex from 'knex';
 import handleRegister from './Controllers/register.js';
 import signInHandler from './Controllers/signin.js';
 import profileHandler from './Controllers/profile.js';
-import imageHandler from './Controllers/image.js';
+import {imageHandler, handleApiCall} from './Controllers/image.js';
 
 
 
@@ -51,13 +51,15 @@ app.get('/',(req, res)=> {
 
 })
 
-app.post('/signIn', (req, res) => signInHandler(req, res, db, bcrypt))
+app.post('/signIn', signInHandler(db, bcrypt))
 
-app.post('/register', (req, res) => handleRegister(req, res, db, bcrypt))
+app.post('/register', handleRegister(db, bcrypt))
 
-app.get('/profile/:id', (req, res) => profileHandler(req, res, db))
+app.get('/profile/:id', profileHandler(db))
 
-app.put('/image', (req, res) => imageHandler(req, res, db))
+app.put('/image', imageHandler(db))
+
+app.post('/imageurl', (req, res) => handleApiCall(req, res))
 
 app.listen(3000 , ()=> {
     console.log('Go on port 3000!');
