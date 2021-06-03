@@ -13,10 +13,8 @@ import {imageHandler, handleApiCall} from './Controllers/image.js';
 const db = knex({
   client: 'pg',
   connection: {
-    host : '127.0.0.1',
-    user : 'michaelfalat',
-    password : '',
-    database : 'faceDetectionDB'
+    connectString: process.env.DATABASE_URL,
+    ssl:true
   }
 });
 
