@@ -61,8 +61,8 @@ app.put('/image', imageHandler(db))
 
 app.post('/imageurl', (req, res) => handleApiCall(req, res))
 
-app.listen(3000 , ()=> {
-    console.log('Go on port 3000!');
+app.listen(process.env.PORT || 3000 , ()=> {
+    console.log(`Go on port ${process.env.PORT}!`);
 })
 
 // bcrypt.hash("bacon", null, null, function(err, hash) {
