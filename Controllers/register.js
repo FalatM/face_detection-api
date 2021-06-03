@@ -3,7 +3,7 @@
 
 const handleRegister = (db, bcrypt) => (req, res) => {
     const {name, email, password} = req.body;
-    if (!email || !name || !passsword) {
+    if (!email || !name || !password) {
          return res.status(400).json("Please complete all entries.");
     }
     const hash = bcrypt.hashSync(password);
